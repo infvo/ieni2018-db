@@ -23,3 +23,21 @@
             },
   "tel": "010-123 123 9"
 }
+{"name": "Joop de Zwart",
+ "email": "zwartejoop@ziggo.nl",
+ "address": {"street": "Rozengracht 42",
+             "city": "Rotterdam"}
+}
+{"name": "Gijs Bennekom",
+ "email": "gijsbkom@ziggo.nl",
+ "address": {"street": "Lijsterlaan 132",
+             "city": "Rotterdam"}
+}
+{"name": "Leontien de Bruin ",
+ "email":
+ ["lhmdebruin@hotmail.com",
+  "leontien134@tiscalimail.nl"
+ ],
+ "address": {"street": "Tulpstraat 17",
+             "city": "Amsterdam"}
+}

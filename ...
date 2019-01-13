@@ -4,17 +4,21 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Contacts2: meervoudige waarden\n",
+    "# Meervoudige waarden\n",
     "\n",
     "In een MongoDB-document kan een property meerdere waarden bevatten, in de vorm van een array van waarden.\n",
     "\n",
     "> In een relationele (SQL) database heb je voor meervoudige waarden een aparte tabel nodig. In MongoDB kun je zo'n array direct in het document opnemen (*embedding*).\n",
     "\n",
-    "* hoe geef je deze meervoudige waarden weer in een document?\n",
-    "* hoe geef je deze weer in een validator-schema?\n",
-    "* welke gevolgen heeft dit voor queries?\n",
-    "    * voor het bevragen van de data\n",
-    "    * voor het toevoegen van data\n",
+    "Zoals je in sommige van de contact-documenten kunt zien, heeft een persoon soms meerdere email-adressen.\n",
+    "In dit notebook gaan we in de vraag wat dit betekent voor \n",
+    "\n",
+    "* het opvragen van data\n",
+    "* het veranderen of toevoegen van data\n",
+    "* het validator-schema.\n",
+    "\n",
+    "Soms willen we de meervoudige data nog onderscheiden, bijvoorbeeld een mailadres voor werk en een mailadres voor prive.\n",
+    "Dit heeft wat grotere gevolgen; we proberen daarbij de aanpak van JSON-LD (voor linked data) te volgen.\n",
     "    \n",
     "**TODO** dit onderdeel verder afmaken: is nu incompleet.    "
    ]
@@ -118,6 +122,51 @@
     "\n",
     "Welke conventie kunnen we hierbij hanteren? gebruiken we een speciale naam voor het array? Ik voel er veel voor om de \"gestandaardiseerde\" naam voor het eigenlijke veld te gebruiken: bijvoorbeeld: \"tels:telephone\". Dit komt ook overeen met het gebruik in RDFa en microdata: je vermeldt de eigenschap dan meerdere keren. (In het geval van JSON moet je dan een naam voor het array verzinnen.)\n",
     "(In schema.org zijn de meervouden zoveel mogelijk vervangen door het enkelvoud, bijvoorbeeld: parent in plaats van parents. Je hebt dan met een relatie te maken die mogelijk meervoudig kan zijn.)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Join"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Voorbeeld: verwijzingen naar andere contacten\n",
+    "\n",
+    "In onze contacten-database kunnen zowel personen als organisaties voorkomen.\n",
+    "Een persoon kan in dienst zijn van een bedrijf:\n",
+    "in dat geval kun je een verwijzing naar het bedrijf in de contactgegevens van de persoon opnemen.\n",
+    "\n",
+    "Je kunt deze verwijzing naar het bedrijf ook voor een deel *de-normaliseren*:\n",
+    "als je in de meeste queries naar de persoon alleen de naam van het bedrijf nodig hebt,\n",
+    "dan kun je die ook bij de persoonsgegevens opnemen, naast de verwijzing naar de contactgegevens van het bedrijf.\n",
+    "(De naam van het bedrijf zou je ook als *key* kunnen gebruiken? Dat is meestal niet handig... De naam van het bedrijf hoeft niet uniek te zijn; dit is bovendien een eigenschap die niet snel zal veranderen.)\n",
+    "Je hoeft dan alleen een *join* uit te voeren als je voor die persoon ook andere bedrijfsgegevens nodig hebt.\n",
+    "\n",
+    "> Ik zou mogelijk het \"employer\"-veld introduceren; in schema.org is dat `worksFor`, maar dat zou je ook breder kunnen opvatten - ook een zzp-er kan voor een andere organisatie werken. Dat blijkt ook uit de beschrijving: \"organizations (mv!) this person works for\".\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Voorbeeld \n",
+    "\n",
+    "We breiden de contactgegevens voor een persoon uit met het (optionele) veld `employer_id`.\n",
+    "Dit is een `_id` (foreign key) voor de contactgegevens voor de werkgever.\n",
+    "\n",
+    "Bij het ophalen van de contactgegevens van een persoon controleren we of deze een verwijzing heeft naar een werkgever.\n",
+    "Als deze gedefinieerd is, halen we ook de contactgegevens van de werkgever op, voor de naam daarvan.\n",
+    "\n",
+    "In de voorbeeld-database hebben we ook een aantal organisaties opgenomen die als werkgever optreden.\n",
+    "\n",
+    "(We gebruiken in dit geval geen validator; in het schema zouden we dan zowel de persoons-variant als de organisatie-variant op moeten nemen.)\n",
+    "\n",
+    "\n"
    ]
   },
   {

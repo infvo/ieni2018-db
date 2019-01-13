@@ -1,0 +1,36 @@
+{"subject": "Beleidsplan",
+ "time": {"$date": "2019-03-01T00:00:00.000Z"},
+ "duration": 60,
+ "participants": [{ "email": "hdb@example.com"}, {"email": "a34huis@gmail.com"}],
+ "location": "Seats2Meet Den Bosch"
+}
+{"subject": "Beleidsplan",
+ "time": {"$date": "2019-04-01T00:00:00.000Z"},
+ "duration": 120,
+ "participants": [{ "email": "zwartejoop@ziggo.nl"}],
+ "location": "Seats2Meet Utrecht CS"
+}
+{"subject": "Beleidsplan",
+ "time": {"$date": "2019-04-13T00:00:00.000Z"},
+ "duration": 120,
+ "participants": [{ "email": "gijsbkom@ziggo.nl"}, {"email": "a34huis@gmail.com"} ],
+ "location": "Amsterdam Zuid"
+}
+{"subject": "Beleidsplan",
+ "time": {"$date": "2019-04-23T00:00:00.000Z"},
+ "duration": 120,
+ "participants": [{ "email": "hdb@example.com"}, {"email": "a34huis@gmail.com"}],
+ "location": "Seats2Meet Den Bosch"
+}
+{"subject": "Fusie",
+ "time": {"$date": "2019-03-19T00:00:00.000Z"},
+ "duration": 120,
+ "participants": [{ "email": "hdb@example.com"}, {"email": "a34huis@gmail.com"}],
+ "location": "Den Haag CS"
+}
+{"subject": "Fusie",
+ "time": {"$date": "2019-04-27T00:00:00.000Z"},
+ "duration": 180,
+ "participants": [{ "email": "hdb@example.com"}, {"email": "a34huis@gmail.com"}],
+ "location": "Den Haag CS"
+}
